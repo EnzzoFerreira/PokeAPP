@@ -14,10 +14,82 @@
             filePath = "PokeAPP/Service/PokemonService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "fetchPokemonDetails(from:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "32DDBCAB-3F7D-4ADC-9188-32BC0C724536 - e47a86742145aec0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PokeAPP.PokemonService.fetchPokemonDetails(from: Swift.String) async throws -&gt; PokeAPP.Pokemon"
+                  moduleName = "PokeAPP.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/u25698/Documents/StudyApp/PokeAPP/PokeAPP/Service/PokemonService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89">
+               </Location>
+               <Location
+                  uuid = "32DDBCAB-3F7D-4ADC-9188-32BC0C724536 - 477710d3e99489d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for PokeAPP.PokemonService.fetchPokemonDetails(from: Swift.String) async throws -&gt; PokeAPP.Pokemon"
+                  moduleName = "PokeAPP.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/u25698/Documents/StudyApp/PokeAPP/PokeAPP/Service/PokemonService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89">
+               </Location>
+               <Location
+                  uuid = "32DDBCAB-3F7D-4ADC-9188-32BC0C724536 - 3af2836dcd7f6a5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for PokeAPP.PokemonService.fetchPokemonDetails(from: Swift.String) async throws -&gt; PokeAPP.Pokemon"
+                  moduleName = "PokeAPP.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/u25698/Documents/StudyApp/PokeAPP/PokeAPP/Service/PokemonService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89">
+               </Location>
+               <Location
+                  uuid = "32DDBCAB-3F7D-4ADC-9188-32BC0C724536 - 5fae81eafb0a359f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for PokeAPP.PokemonService.fetchPokemonDetails(from: Swift.String) async throws -&gt; PokeAPP.Pokemon"
+                  moduleName = "PokeAPP.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/u25698/Documents/StudyApp/PokeAPP/PokeAPP/Service/PokemonService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89">
+               </Location>
+               <Location
+                  uuid = "32DDBCAB-3F7D-4ADC-9188-32BC0C724536 - e47a86742145ae86"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PokeAPP.PokemonService.fetchPokemonDetails(from: Swift.String) async throws -&gt; PokeAPP.Pokemon"
+                  moduleName = "PokeAPP.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/u25698/Documents/StudyApp/PokeAPP/PokeAPP/Service/PokemonService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

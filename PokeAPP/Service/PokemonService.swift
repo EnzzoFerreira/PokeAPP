@@ -65,7 +65,7 @@ final class PokemonService {
     }
     
     func fetchPokemon() async throws -> [Pokemon] {
-        var pokemons: [Pokemon]
+        var pokemons: [Pokemon] = []
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/") else {
             throw URLError(.badURL)
         }
@@ -81,7 +81,10 @@ final class PokemonService {
     }
     
     func fetchPokemonDetails(from urlString: String) async throws -> Pokemon {
-        guard let url = URL(string: urlString) else {
+        
+        let cleanUrlString = urlString.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard let url = URL(string: cleanUrlString) else {
             throw URLError(.badURL)
         }
         
