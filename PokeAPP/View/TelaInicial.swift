@@ -13,17 +13,11 @@
 import SwiftUI
 
 struct TelaInicial: View {
-    private let colunas = [
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16)
-    ]
     
     var body: some View {
         NavigationStack {
-            ZStack {
-                
-                
-                
+            ZStack {     
+                   
                 Image(systemName: "circle.circle.fill")
                     .resizable()
                     .scaledToFit()
