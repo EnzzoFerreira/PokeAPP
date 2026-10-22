@@ -65,20 +65,31 @@ final class PokemonService {
     }
     
     func fetchPokemon() async throws -> [Pokemon] {
-        var pokemons: [Pokemon] = []
-        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/") else {
-            throw URLError(.badURL)
-        }
-        
-        let (data, _) = try await URLSession.shared.data(from: url)
-        let pokeListUrl = try JSONDecoder().decode(PokemonListResponse.self, from: data)
-        
-        for pok in pokeListUrl.results {
-                let pokemon = try await fetchPokemonDetails(from: pok.url)
-                pokemons.append(pokemon)
+            // Adicionamos ?limit=50 para trazer mais itens de uma vez (você pode alterar esse número)
+            guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/?limit=50") else {
+                throw URLError(.badURL)
             }
-        return pokemons
-    }
+             
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let pokeListUrl = try JSONDecoder().decode(PokemonListResponse.self, from: data)
+             
+            // Usamos withThrowingTaskGroup para carregar todos os detalhes em paralelo (em vez de um loop lento)
+            return try await withThrowingTaskGroup(of: Pokemon.self) { group in
+                for pok in pokeListUrl.results {
+                    group.addTask {
+                        return try await self.fetchPokemonDetails(from: pok.url)
+                    }
+                }
+                
+                var pokemons: [Pokemon] = []
+                for try await pokemon in group {
+                    pokemons.append(pokemon)
+                }
+                
+                // Ordena os Pokémon pelo ID para manter a Pokédex organizada corretamente
+                return pokemons.sorted { $0.id < $1.id }
+            }
+        }
     
     func fetchPokemonDetails(from urlString: String) async throws -> Pokemon {
         

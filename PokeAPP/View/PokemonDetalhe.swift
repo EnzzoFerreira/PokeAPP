@@ -13,7 +13,8 @@ struct PokemonDetalhe: Decodable {
     let types: [TipoSlot]
     let abilities: [HabilidadeSlot]
     let stats: [StatSlot]
-
+    let moves: [PokemonMove]?
+    
     var alturaMetros: Double { Double(height) / 10 }
     var pesoKg: Double { Double(weight) / 10 }
 
@@ -22,6 +23,15 @@ struct PokemonDetalhe: Decodable {
 
     struct HabilidadeSlot: Decodable {
         let ability: Nome
+    }
+    
+    struct PokemonMove: Decodable {
+        let move: ItemDetalhe
+    }
+    
+    struct ItemDetalhe: Decodable {
+        let name: String
+        let url: String
     }
 
     struct StatSlot: Decodable {

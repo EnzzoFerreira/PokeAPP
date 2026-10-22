@@ -5,103 +5,75 @@
 //  Created by ENZZO FERREIRA DE SOUZA on 09/10/26.
 //
 
+//
+//  TelaInicial.swift
+//  PokeAPP
+//
+
 import SwiftUI
 
 struct TelaInicial: View {
-    @StateObject private var viewModel = PokemonViewModel()
+    private let colunas = [
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16)
+    ]
+    
     var body: some View {
         NavigationStack {
-            Group {
-                if viewModel.isLoading && viewModel.pokemons.isEmpty {
-                    VStack(spacing: 12) {
-                        ProgressView()
-                        Text("Carregando Pokedex...")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                } else if let error = viewModel.errorMessage {
-                    VStack(spacing: 12) {
-                        Image(systemName: "exclamationmark.triangle")
-                            .font(.largeTitle)
-                            .foregroundColor(.orange)
-                        Text(error)
-                            .multilineTextAlignment(.center)
-                        Button("Tentar Novamente") {
-                            Task {
-                                await viewModel.loadPokemons()
+            ZStack {
+                
+                
+                
+                Image(systemName: "circle.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 320)
+                    .foregroundStyle(.red.opacity(0.3))
+                    .offset(x: -100, y: -200)
+                
+                ScrollView {
+                    VStack(spacing: 16) {
+                        ForEach(TipoPokemon.allCases) { tipo in
+                            NavigationLink(value: tipo) {
+                                CategoriaRow(tipo: tipo)
                             }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.borderedProminent)
                     }
                     .padding()
-                } else {
-                    List(viewModel.filteredPokemons) { pokemon in
-                        NavigationLink(destination: Text("Detalhes de \(pokemon.nome)")) {
-                            PokemonCardView(pokemon: pokemon)
-                        }
-                    }
-                    .listStyle(.plain)
-                    .searchable(text: $viewModel.searchText, prompt: "Buscar Pokémon...")
-                    .refreshable {
-                        await viewModel.loadPokemons()
-                    }
                 }
-            }
-            .navigationTitle("Pokédex")
-            .task {
-                if viewModel.pokemons.isEmpty {
-                    await viewModel.loadPokemons()
+                .navigationTitle("PokeApp")
+                .navigationDestination(for: TipoPokemon.self) { tipo in
+                    TelaCarrosel(tipo: tipo)
                 }
             }
         }
     }
 }
+private struct CategoriaRow: View {
+    let tipo: TipoPokemon
 
-
-
-
-
-
-struct PokemonCardView: View {
-    let pokemon: Pokemon
-    
     var body: some View {
         HStack(spacing: 16) {
-            // Imagem do Pokémon vinda da URL
-            AsyncImage(url: URL(string: pokemon.imagem)) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                        .frame(width: 70, height: 70)
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 70, height: 70)
-                case .failure:
-                    Image(systemName: "photo")
-                        .font(.largeTitle)
-                        .foregroundColor(.gray)
-                        .frame(width: 70, height: 70)
-                @unknown default:
-                    EmptyView()
-                }
-            }
-            .background(Color.red)
-            .cornerRadius(12)
-            
-            VStack(alignment: .leading, spacing: 6) {
-                Text("#\(pokemon.id) - \(pokemon.nome.capitalized)")
-                    .font(.headline)
-                    .bold()
-                
-                Text("Tipo: \(pokemon.tipo.capitalized)")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-            
+            Image(systemName: tipo.icone)
+                .font(.title)
+                .foregroundStyle(.white)
+                .frame(width: 56, height: 56)
+                .background(tipo.cor, in: Circle())
+
+            Text(tipo.nome)
+                .font(.title2.weight(.semibold))
+
             Spacer()
+
+            Image(systemName: "chevron.right")
+                .foregroundStyle(.secondary)
         }
-        .padding(8)
+        .padding()
+        .background(tipo.cor.opacity(0.15), in: RoundedRectangle(cornerRadius: 20))
     }
+}
+
+#Preview {
+    TelaInicial()
 }
